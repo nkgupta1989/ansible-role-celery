@@ -1,0 +1,10 @@
+---
+- name: ensure downloads directory is created
+  file: path=/home/{{local_user}}/downloads state=directory
+  become: yes
+  become_user: "{{local_user}}"
+
+- name: ensure ssh directory is created
+  file: path=/home/{{local_user}}/.ssh state=directory
+  become: yes
+  become_user: "{{local_user}}"

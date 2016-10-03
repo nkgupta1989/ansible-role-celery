@@ -1,0 +1,27 @@
+---
+- name: Install Celery
+  pip: name="celery[redis]" version={{ celery_version }} state=present virtualenv={{ virtual_env_path }}
+  become: yes
+  become_user: "{{local_user}}"
+
+- name: create directory for celery logs
+  file: path=/var/log/celery/ state=directory owner={{ local_user }} group={{ local_user }}
+
+- name: create directory for celery codebase
+  file: path=/home/{{local_user}}/{{celery_repo_name}} state=directory owner={{ local_user }} group={{ local_user }}
+
+- name: create releases directory for celery codebase
+  file: path=/home/{{local_user}}/{{celery_repo_name}}/releases state=directory owner={{ local_user }} group={{ local_user }}
+
+
+- name: create directory for celery pid
+  file: path=/var/run/celery/ state=directory owner={{ local_user }} group={{ local_user }}
+
+- name: Configure Celery default file
+  template: src=celeryd.j2 dest=/etc/default/celeryd-{{celery_app_name}} owner={{ local_user }} group={{ local_user }}
+
+- name: Configure Celery init.d service
+  template: src=celeryd.init.j2 dest=/etc/init.d/celeryd-{{celery_app_name}} mode=0755 owner={{ local_user }} group={{ local_user }}
+
+- include: celerybeat.yml
+  when: run_celery_beat is defined and run_celery_beat

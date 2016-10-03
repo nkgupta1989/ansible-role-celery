@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: centos
+  gather_facts: no
+  tasks:
+    - name: fix authorised hosts
+      replace: dest=/root/.ssh/authorized_keys regexp='.* ssh-rsa' replace='ssh-rsa' backup=yes
+      become: yes
+      become_method: sudo

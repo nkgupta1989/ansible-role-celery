@@ -1,0 +1,10 @@
+---
+- name: ensure local user is present
+  user: name={{local_user}} state=present
+
+- name: remove user password
+  command: passwd -fd {{local_user}}
+
+- name: authorise ssh keys
+  authorized_key: user={{local_user}} key=https://github.com/{{item}}.keys
+  with_items: "{{ops_devs}}"

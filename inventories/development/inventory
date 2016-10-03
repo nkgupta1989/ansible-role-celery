@@ -1,0 +1,3 @@
+[celery]
+amazon-instance-name1 run_celery_beat=True
+amazon-instance-name2

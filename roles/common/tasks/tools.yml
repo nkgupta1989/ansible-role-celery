@@ -1,0 +1,11 @@
+---
+- name: ensure tools are at the latest version
+  yum: name="{{ item }}" state=latest
+  with_items:
+     - vim
+     - ack
+     - curl
+     - wget
+     - htop
+     - screen
+     - telnet

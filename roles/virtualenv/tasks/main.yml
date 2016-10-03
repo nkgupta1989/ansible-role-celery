@@ -1,0 +1,6 @@
+---
+- name: ensure python pip is installed
+  yum: name="python-pip" state=latest
+
+- name: Install virtual enviornment
+  pip: name="virtualenv" state=present

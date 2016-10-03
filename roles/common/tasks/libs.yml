@@ -1,0 +1,12 @@
+---
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+- name: ensure devel libs are at the latest version
+  yum: name="{{ item }}" state=latest
+  with_items:
+     - zlib-devel
+     - openssl-devel
+     - readline-devel
+     - sqlite-devel
+     - libxml2-devel
+     - libxslt-devel

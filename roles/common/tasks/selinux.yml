@@ -1,0 +1,6 @@
+---
+- name: ensure SELinux is in permissive mode
+  shell: /usr/sbin/setenforce 0
+
+- name: ensure SELinux is turned off permanently
+  selinux: state=disabled

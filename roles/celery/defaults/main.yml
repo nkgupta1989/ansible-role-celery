@@ -1,0 +1,10 @@
+---
+celery_version: 3.1.18
+celery_config_path: "/home/{{ local_user }}/{{ celery_repo_name }}/current"
+celery_beat_path: "{{ virtual_env_path }}/bin/celerybeat"
+
+celery_nodes: "{{ celery_app_name }}"
+worker_time_limit: 10000
+celery_auto_scale: 20,30
+task_concurrency: 16
+log_level: INFO

@@ -1,0 +1,15 @@
+---
+- name: ensure lvm is installed
+  yum: name=lvm2 state=present
+
+- name: creating "{{ volume_group_name }}" volume group
+  lvg: vg={{ volume_group_name }} pvs={{ physical_volume_system_name }} state=present
+
+- name: creating logical volume "{{ logical_volume_name }}" on "{{ volume_group_name }}" volume group
+  lvol: vg={{ volume_group_name }} lv={{ logical_volume_name }} size={{volume_group_size}} opts="-r 512"
+
+- name: creating new filesystem on new LVM logical volume
+  filesystem: fstype={{ filesystem }} dev=/dev/{{ volume_group_name }}/{{ logical_volume_name }}
+
+- name: mounting new filesystem on "{{ data_dir }}"
+  mount: name={{ data_dir }} src=/dev/{{ volume_group_name }}/{{ logical_volume_name }} fstype={{ filesystem }} state=mounted

@@ -1,0 +1,3 @@
+---
+- name: Asia/Kolkata is localtime
+  shell: timedatectl set-timezone Asia/Kolkata

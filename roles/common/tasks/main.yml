@@ -1,0 +1,10 @@
+---
+- include: yum.yml
+- include: timezone.yml
+- include: tools.yml
+- include: libs.yml
+- include: users.yml
+- include: downloads.yml
+- include: lvm.yml
+  when: partition is defined and partition
+- include: selinux.yml

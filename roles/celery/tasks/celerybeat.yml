@@ -1,0 +1,6 @@
+---
+- name: Configure Celerybeat default file
+  template: src=celerybeat.j2 dest=/etc/default/celerybeat-{{celery_app_name}} owner={{ local_user }} group={{ local_user }}
+
+- name: Configure Celerybeat init.d service
+  template: src=celerybeat.init.j2 dest=/etc/init.d/celerybeat-{{celery_app_name}} mode=0755 owner={{ local_user }} group={{ local_user }}

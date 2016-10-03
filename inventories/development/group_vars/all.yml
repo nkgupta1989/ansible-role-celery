@@ -1,0 +1,5 @@
+---
+virtual_env_name: "venv-app"
+virtual_env_path: "/home/{{ local_user }}/{{virtual_env_name}}"
+celery_repo_name: "community-platform-celery"
+celery_app_name: "app"

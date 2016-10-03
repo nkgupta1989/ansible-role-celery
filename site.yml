@@ -1,0 +1,9 @@
+---
+- name: Setting up the platform
+  hosts: all
+  remote_user: root
+  roles:
+    - geerlingguy.repo-epel
+    - common
+
+- include: host_types/celeryservers.yml

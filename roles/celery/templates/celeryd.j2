@@ -1,0 +1,12 @@
+CELERYD_NODES={{ celery_nodes }}
+CELERYD_CHDIR={{ celery_config_path }}
+CELERYD_OPTS="--time-limit={{ worker_time_limit }} --autoscale={{ celery_auto_scale }} --concurrency={{ task_concurrency }} --loglevel={{ log_level }}"
+CELERY_CONFIG_MODULE="celeryconfig"
+CELERYD_LOG_FILE="/var/log/celery/celery-{{celery_app_name}}.log"
+CELERYD_PID_FILE="/var/run/celery/celery-{{celery_app_name}}.pid"
+CELERYD_USER={{ local_user }}
+CELERYD_GROUP={{ local_user }}
+export PYTHON_EGG_CACHE="/home/{{ local_user }}/"
+CELERYD_MULTI={{ virtual_env_path }}/bin/celeryd-multi
+CELERY_BIN="{{ virtual_env_path }}/bin/celery"
+CELERY_CREATE_DIRS=1

@@ -1,0 +1,10 @@
+---
+physical_volume_system_name: "/dev/xvdb"
+volume_group_name: "myvoldb"
+logical_volume_name: "database"
+size_in_gb: 700
+volume_group_size: "{{size_in_gb}}G"
+filesystem: "xfs"
+
+ops_devs:
+  - nkgupta1989
